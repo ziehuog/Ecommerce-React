@@ -3,18 +3,27 @@ import CustomButton from "../custom-button/custom-button.component.jsx";
 
 import { useEffect, useState } from "react";
 import "./collection-item.styles.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 const CollectionItem = () => {
-  const [DATA, setDATA] = useState();
+
+  const {data, loading} = useSelector(state => state.data)
+
+  const dispatch = useDispatch()
   useEffect(() => {
-    fetch(`https://course-api.com/react-store-products`)
-      .then((res) => res.json())
-      .then((users) => setDATA(users));
-  }, []);
-  console.log(DATA);
+    dispatch(getData())
+  }, [])
+
+  // const [DATA, setDATA] = useState();
+  // useEffect(() => {
+  //   fetch(`https://course-api.com/react-store-products`)
+  //     .then((res) => res.json())
+  //     .then((users) => setDATA(users));
+  // }, []);
+  // console.log(DATA);
   return (
     <div className="collection-item">
-      {DATA?.map((data, index) => (
+      {data?.map((data, index) => (
         <div key={index}>
           <div className="image">
             <img src="" alt="" />
