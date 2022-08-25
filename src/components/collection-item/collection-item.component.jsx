@@ -1,38 +1,35 @@
-import React from 'react';
-import CustomButton from '../custom-button/custom-button.component.jsx';
+import React from "react";
+import CustomButton from "../custom-button/custom-button.component.jsx";
 
-import { useEffect, useState } from 'react';
-import './collection-item.styles.scss';
-
+import { useEffect, useState } from "react";
+import "./collection-item.styles.scss";
 
 const CollectionItem = () => {
-   
+  const [DATA, setDATA] = useState();
+  useEffect(() => {
+    fetch(`https://course-api.com/react-store-products`)
+      .then((res) => res.json())
+      .then((users) => setDATA(users));
+  }, []);
+  console.log(DATA);
+  return (
+    <div className="collection-item">
+      {DATA?.map((data, index) => (
+        <div key={index}>
+          <div className="image">
+            <img src="" alt="" />
+          </div>
 
-    const [DATA, setDATA] = useState()
-    useEffect(() => {
-      
-      fetch(`https://course-api.com/react-store-products`)
-      .then(res => res.json())
-      .then(users => setDATA(users))
-  }, [])
-  console.log(DATA)
-    return (
-      <div className="collection-item">
-        
-        <div
-          className="image"
-          
-        />
-        <div className="collection-footer">
-          <span className="name"> name</span>
-          <span className="price">price </span>
+          <div className="collection-footer">
+            <span className="name">{data.name}</span>
+            <span className="price">{data.price} </span>
+          </div>
         </div>
+      ))}
 
-        <CustomButton  inverted>Add to cart</CustomButton>
-      </div>
-    );
-}
-
-
+      <CustomButton inverted>Add to cart</CustomButton>
+    </div>
+  );
+};
 
 export default CollectionItem;
