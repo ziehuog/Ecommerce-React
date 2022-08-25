@@ -1,33 +1,38 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import CustomButton from '../custom-button/custom-button.component.jsx';
-import { addItem }from '../../redux/cart/cart.actions.js';
 
+import { useEffect, useState } from 'react';
 import './collection-item.styles.scss';
 
 
-const CollectionItem = ({item, addItem}) => {
-    const {name, price, imageUrl} = item;
+const CollectionItem = () => {
+   
+
+    const [DATA, setDATA] = useState()
+    useEffect(() => {
+      
+      fetch(`https://course-api.com/react-store-products`)
+      .then(res => res.json())
+      .then(users => setDATA(users))
+  }, [])
+  console.log(DATA)
     return (
       <div className="collection-item">
+        
         <div
           className="image"
-          style={{
-            backgroundImage: `url(${imageUrl})`
-          }}
+          
         />
         <div className="collection-footer">
-          <span className="name"> {name} </span>
-          <span className="price"> {price} </span>
+          <span className="name"> name</span>
+          <span className="price">price </span>
         </div>
 
-        <CustomButton onClick={ () =>  addItem(item)} inverted>Add to cart</CustomButton>
+        <CustomButton  inverted>Add to cart</CustomButton>
       </div>
     );
 }
 
-const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
-})
 
-export default connect(null, mapDispatchToProps) (CollectionItem);
+
+export default CollectionItem;

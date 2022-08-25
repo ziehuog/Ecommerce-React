@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export const dataContext = useContext()
+// export const dataContext = useContext()
 export function DATA() {
   const [DATA, setDATA] = useState()
   useEffect(() => {
