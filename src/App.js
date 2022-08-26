@@ -9,8 +9,14 @@ import Header from "./components/header/header.component";
 import SignInAndSignUp from "./pages/sign-in-sign-up/sign-in-sign-up.component";
 
 import "./App.css";
+import { useDispatch } from "react-redux";
+import { fetchData } from "./redux/dataSlice";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
   return (
     <div>

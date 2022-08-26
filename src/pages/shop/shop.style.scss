@@ -1,4 +1,8 @@
 .shop-page{
+    padding: 20px 80px;
+    //
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
