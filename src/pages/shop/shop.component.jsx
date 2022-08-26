@@ -1,10 +1,13 @@
 import React from 'react';
-import CollectionsOverview from '../../components/collections-overview/collections-overview.component'
+import CollectionItem from '../../components/collection-item/collection-item.component';
 
-const ShopPage = () => (
-    <div className='shop-page'>
-        <CollectionsOverview />
-    </div>
-)
+const ShopPage = () => {
+    return (
+    
+        <div className='shop-page'>
+            <CollectionItem />
+        </div>
+    )
+} 
 
 export default ShopPage;
