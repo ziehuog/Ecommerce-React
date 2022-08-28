@@ -6,3 +6,5 @@ export default configureStore({
         data: dataSlice,
     }
 })
+
+const store = createStore()

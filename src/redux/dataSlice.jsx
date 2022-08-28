@@ -22,7 +22,6 @@ const dataSlice = createSlice({
         state.message = 'pending'
     },
     [fetchData.fulfilled]: (state, action) => {
-      console.log(action.payload)
         state.loading = false
         state.data = action.payload
         state.message = 'fulfilled'

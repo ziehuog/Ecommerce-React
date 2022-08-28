@@ -3,3 +3,9 @@ export const initialState = {
     data: [],
     message: ''
 }
+
+export const initShopping ={
+    category: ''
+}
+
+export const chooseCategory = 'shopping/chooseCategory'

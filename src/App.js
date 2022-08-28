@@ -6,7 +6,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 
 import Header from "./components/header/header.component";
-import SignInAndSignUp from "./pages/sign-in-sign-up/sign-in-sign-up.component";
+import SignInAndSignUp from "./pages/signIn-signUp/signIn-signUp";
 
 import "./App.css";
 import { useDispatch } from "react-redux";
