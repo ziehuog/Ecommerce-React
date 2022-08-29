@@ -1,16 +1,19 @@
-import { chooseCategory } from "./constants";
+import { createSlice } from "@reduxjs/toolkit";
+import { initShopping } from "./constants";
 
-const rootReducer = (state, action) =>{
-    switch(action.type){
-        case chooseCategory:
-            return {
-                ...state,
-                category: action.paylpad
+const shoppingReducer = createSlice({
+  name: "shopping",
+  initialState: initShopping,
+  reducers: {
+    chooseCategory(state, action) {
+      return {
+        ...state,
+        category: action.payload,
+      };
+    },
+  },
+});
 
-            }
-        default:
-            return state;
-    }
-}
+export const actions = shoppingReducer.actions
 
-export default rootReducer
+export default shoppingReducer;

@@ -3,6 +3,11 @@ import CustomButton from "../../shares/custom-button/custom-button.";
 import FormInput from "../../shares/form-input/custom-input";
 
 import "./sign-in.styles.scss";
+import { auth} from "../../firebase/firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+
+const provider = new GoogleAuthProvider()
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +25,15 @@ const SignIn = () => {
     e.preventDefault();
     console.log(email, password);
   };
+
+  const LoginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+  .then((res) => {
+   console.log(res)
+  }).catch((error) => {
+    console.log(error)
+  });
+  }
   return (
     <div className="sign-in">
       <h2>I already have an account</h2>
@@ -38,6 +52,7 @@ const SignIn = () => {
         type={"password"}
       />
       <CustomButton name={"Submit"} onClick={submitForm} />
+      <CustomButton name = {'Login with Google'} onClick={LoginWithGoogle}/>
       </form>
     </div>
   );

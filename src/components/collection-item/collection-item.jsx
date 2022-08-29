@@ -4,11 +4,15 @@ import { useSelector } from "react-redux";
 import "./collection-item.styles.scss";
 
 const CollectionItem = () => {
-  const { data, loading, message } = useSelector((state) => state.data);
+  const { data } = useSelector((state) => state.data);
+  const { category} = useSelector((state) => state.shopping);
+
+  const categoriesItem = data?.filter(item => item.category === category)
+
 
   return (
     <div className="collection">
-      {data?.map((data, index) => (
+      {categoriesItem?.map((data, index) => (
         <div key={index} className="collection-item">
           <div className="background-image">
             <img src={`${data.image}`} alt="" />

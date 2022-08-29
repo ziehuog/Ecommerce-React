@@ -1,7 +1,8 @@
 export const initialState = {
     loading: false,
     data: [],
-    message: ''
+    message: '',
+    currentCategory: ''
 }
 
 export const initShopping ={
