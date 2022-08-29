@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./checkout.styles.scss";
+import './checkout.styles.scss';
 
 const CheckoutPage = () => (
   <div className="checkout-page">

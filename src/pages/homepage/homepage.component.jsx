@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import MenuItem from "../../components/menu-item/menu-item";
+import MenuItem from '../../components/menu-item/menu-item';
 
-import "./homepage.styles.scss";
+import './homepage.styles.scss';
 
 const HomePage = () => {
   return (
@@ -10,6 +10,6 @@ const HomePage = () => {
       <MenuItem />
     </div>
   );
-}
+};
 
 export default HomePage;

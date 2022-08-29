@@ -6,10 +6,10 @@ import SignUp from '../../components/sign-up/sign-up';
 import './signIn-signUp.styles.scss';
 
 const SignInAndSignUp = () => (
-    <div className='sign-in-and-sign-up'>
-        <SignIn />
-        <SignUp />
-    </div>
-)
+  <div className="sign-in-and-sign-up">
+    <SignIn />
+    <SignUp />
+  </div>
+);
 
 export default SignInAndSignUp;

@@ -9,19 +9,19 @@
   position: relative;
 
   border: 1px solid black;
-  margin: 0 7.5px 15px;
   overflow: hidden;
-  margin-bottom: 40px;
 
   &:hover {
     cursor: pointer;
   }
 }
 
+.collection-container {
+  margin: 0 7.5px 15px;
+}
 .collection-item:hover .item-content {
   bottom: 0px;
-  transition: all .4s linear;
-
+  transition: all 0.3s linear;
 }
 
 .background-image {
@@ -38,7 +38,7 @@
 .item-content {
   bottom: -100px;
   width: 100%;
-  height: 90px;
+  height: 60px;
   padding: 0 25px;
   display: flex;
   flex-direction: column;
@@ -50,22 +50,38 @@
   position: absolute;
   cursor: pointer;
   z-index: 5;
-  // bottom: 0;
 
-  .name{
+  .name {
     font-size: 25px;
     text-align: center;
   }
 
-  .collection {
-    font-weight: bold;
-    margin-bottom: 6px;
-    font-size: 22px;
+  .collection-title {
     color: #4a4a4a;
   }
-
-  .subtitle {
-    font-weight: lighter;
-    font-size: 16px;
-  }
+}
+.collection-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 22px;
+  color: #4a4a5b;
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 6px 0px;
+}
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 15px 15px;
+  border: 1px solid;
+}
+.addToCart-icon {
+  font-size: 28px;
+  height: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+  color: #4a4a5b;
 }

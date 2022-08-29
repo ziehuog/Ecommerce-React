@@ -1,12 +1,16 @@
 export const initialState = {
-    loading: false,
-    data: [],
-    message: '',
-    currentCategory: ''
-}
+  loading: false,
+  data: [],
+  message: '',
+  currentCategory: ''
+};
 
-export const initShopping ={
-    category: ''
-}
+export const initShopping = {
+  category: ' '
+};
 
-export const chooseCategory = 'shopping/chooseCategory'
+export const initCart = {
+  counter: ''
+};
+
+export const chooseCategory = 'shopping/chooseCategory';

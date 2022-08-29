@@ -1,21 +1,21 @@
 :root {
-   --main-bg-color: #FFFFFF;
+  --main-bg-color: #ffffff;
 }
 .dark :root {
-   --main-bg-color: #000000;
+  --main-bg-color: #000000;
 }
 
 body {
-   font-family: 'Open Sans Condensed', sans-serif;
-   padding: 20px 60px;
-   background-color: var(--main-bg-color);
+  font-family: 'Open Sans Condensed', sans-serif;
+  padding: 20px 60px;
+  background-color: var(--main-bg-color);
 }
 
 a {
-   text-decoration: none;
-   color: black;
+  text-decoration: none;
+  color: black;
 }
 
 * {
-   box-sizing: border-box;
+  box-sizing: border-box;
 }

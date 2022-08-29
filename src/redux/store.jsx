@@ -1,10 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import dataSlice from "./dataSlice";
-import rootReducer from "./reducer";
+import { configureStore } from '@reduxjs/toolkit';
+import dataSlice from './dataSlice';
+import rootReducer from './reducer';
 
 export default configureStore({
-    reducer: {
-        data: dataSlice,
-        shopping: rootReducer.reducer,
-    }
-})
+  reducer: {
+    data: dataSlice,
+    shopping: rootReducer.reducer
+  }
+});

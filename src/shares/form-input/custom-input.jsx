@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./custom-input.styles.scss";
+import './custom-input.styles.scss';
 
 const FormInput = (props) => (
   <div className="group">
