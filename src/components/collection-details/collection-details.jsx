@@ -12,7 +12,7 @@ const CollectionDetails = () => {
   const { details } = useParams();
 
   useEffect(() => {
-    const getDetails = async () => {
+    const getDetails = async () =>{
       const response = await fetch(
         `https://course-api.com/react-store-single-product?id=${details}`
       );
