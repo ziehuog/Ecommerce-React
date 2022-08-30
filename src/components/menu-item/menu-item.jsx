@@ -12,7 +12,6 @@ const MenuItem = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(category);
 
   if (loading) {
     return <Loading />;

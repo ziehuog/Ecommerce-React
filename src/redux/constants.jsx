@@ -10,7 +10,7 @@ export const initShopping = {
 };
 
 export const initCart = {
-  counter: ''
+  counter: 0,
+  cartStore: []
 };
 
-export const chooseCategory = 'shopping/chooseCategory';

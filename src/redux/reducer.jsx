@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initShopping } from './constants';
+import { initCart, initShopping } from './constants';
 
-const shoppingReducer = createSlice({
+export const shoppingReducer = createSlice({
   name: 'shopping',
   initialState: initShopping,
   reducers: {
@@ -15,5 +15,25 @@ const shoppingReducer = createSlice({
 });
 
 export const actions = shoppingReducer.actions;
+//  default shoppingReducer;
 
-export default shoppingReducer;
+
+export const cartReducer = createSlice({
+  name: "cart",
+  initialState: initCart,
+  reducers: {
+    addItems(state, action){
+      const cart = state.cartStore?.push(action.payload);
+      return {
+        ...state,
+        counter: state.counter + 1,
+        cartStore: cart
+      }
+    }
+
+  }
+
+})
+
+export const cartAcions = cartReducer.actions
+

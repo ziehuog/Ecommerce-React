@@ -4,10 +4,15 @@ import { FaCartPlus } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './collection-item.styles.scss';
+import { cartAcions } from '../../redux/reducer';
+import { useDispatch } from 'react-redux';
 
 const CollectionItem = () => {
+  const dispatch = useDispatch();
+
   const { data } = useSelector((state) => state.data);
   const { category } = useSelector((state) => state.shopping);
+  const { cart } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   const categoriesItem = data?.filter((item) => {
@@ -17,27 +22,28 @@ const CollectionItem = () => {
       return item.category === category;
     }
   });
-
-  console.log(categoriesItem);
+  console.log(cart)
 
   return (
     <div className="collection">
-      {categoriesItem?.map((data, index) => (
+      {categoriesItem?.map((item, index) => (
         <div key={index} className="collection-container">
           <div className="collection-item">
             <div className="background-image">
-              <img src={`${data.image}`} alt="" />
+              <img src={`${item.image}`} alt="" />
             </div>
-            <div className="item-content" onClick={() => navigate(`/details/${data.id}`)}>
+            <div className="item-content" onClick={() => navigate(`/details/${item.id}`)}>
               <h3 className="collection-title">Details</h3>
             </div>
           </div>
           <div className="item-info">
             <div>
-              <div className="collection-title"> {data.name}</div>
-              <div className="subtitle">Price: ${data.price}</div>
+              <div className="collection-title"> {item.name}</div>
+              <div className="subtitle">Price: ${item.price}</div>
             </div>
-            <div className="addToCart-icon">
+            <div className="addToCart-icon" onClick={()=> {
+              dispatch(cartAcions.addItems(item))
+            }}>
               <FaCartPlus />
             </div>
           </div>

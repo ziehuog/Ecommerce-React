@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import CustomButton from '../../shares/custom-button/custom-button.';
 import { FaCheck } from 'react-icons/fa';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-
 import './collection-details.styles.scss';
 
 const CollectionDetails = () => {
@@ -31,22 +30,25 @@ const CollectionDetails = () => {
       <div className="details-container">
         {/* display images */}
         <div className="details-img">
+          <div className="display-img">
           <img src={item?.images[0]?.url} alt="" />
+
+          </div>
           <div className="all-image">
-            {item?.images?.map((image) => (
+          {item?.images?.map((image) => (
               <div key={image.id}>
                 <img src={image.url} alt="" onClick={() => checkImg(image.id)} />
               </div>
             ))}
           </div>
-          <div className="btn-container">
+          {/* <div className="btn-container">
             <div className="btn-next">
               <AiOutlineLeft />
             </div>
             <div className="btn-next">
               <AiOutlineRight />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* display description */}
