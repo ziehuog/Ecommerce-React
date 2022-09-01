@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CustomButton from '../../shares/custom-button/custom-button.';
 import { FaCheck } from 'react-icons/fa';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import './collection-details.styles.scss';
+import CustomButton from '../../shares/custom-button/custom-button';
+import { useDispatch } from 'react-redux';
+import { cartAcions } from '../../redux/reducer';
 
 const CollectionDetails = () => {
   const [item, setItem] = useState();
   const [mainColor, setMainColor] = useState();
   const { details } = useParams();
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(cartAcions.addToCart(product))
+  }
 
   useEffect(() => {
     const getDetails = async () =>{
@@ -83,11 +90,14 @@ const CollectionDetails = () => {
               </div>
             ))}
           </div>
-          <CustomButton name="Add to cart" />
+          <CustomButton name="Add to cart" 
+          
+          onClick={() => handleAddToCart(item)}
+          />
         </div>
       </div>
 
-      <div className="other-items"></div>
+      <div className="other-items">{console.log(item)}</div>
     </>
   );
 };

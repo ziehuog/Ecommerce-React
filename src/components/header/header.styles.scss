@@ -30,3 +30,19 @@
     }
   }
 }
+.cart{
+  position: relative;
+}
+.cart span{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  border: 1px solid gray;
+  background-color:lemonchiffon;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

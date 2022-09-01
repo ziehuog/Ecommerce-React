@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCartPlus } from 'react-icons/fa';
+// import { toast } from 'react-toastify';
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +13,6 @@ const CollectionItem = () => {
 
   const { data } = useSelector((state) => state.data);
   const { category } = useSelector((state) => state.shopping);
-  const { cart } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   const categoriesItem = data?.filter((item) => {
@@ -22,7 +22,13 @@ const CollectionItem = () => {
       return item.category === category;
     }
   });
-  console.log(cart)
+
+  const handleAddToCart = (product) => {
+    dispatch(cartAcions.addToCart(product));
+    // toast.success(`Add ${product.name} successfully`, {
+    //   position: toast.POSITION.TOP_CENTER
+    // });
+  };
 
   return (
     <div className="collection">
@@ -41,9 +47,7 @@ const CollectionItem = () => {
               <div className="collection-title"> {item.name}</div>
               <div className="subtitle">Price: ${item.price}</div>
             </div>
-            <div className="addToCart-icon" onClick={()=> {
-              dispatch(cartAcions.addItems(item))
-            }}>
+            <div className="addToCart-icon" onClick={() => handleAddToCart(item)}>
               <FaCartPlus />
             </div>
           </div>

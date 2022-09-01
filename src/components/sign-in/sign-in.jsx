@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import CustomButton from '../../shares/custom-button/custom-button.';
 import FormInput from '../../shares/form-input/custom-input';
 
 import './sign-in.styles.scss';
 import { auth } from '../../firebase/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import CustomButton from '../../shares/custom-button/custom-button';
 
 const provider = new GoogleAuthProvider();
 

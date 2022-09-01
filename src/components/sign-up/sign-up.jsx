@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CustomButton from '../../shares/custom-button/custom-button.';
+import CustomButton from '../../shares/custom-button/custom-button';
 import FormInput from '../../shares/form-input/custom-input';
 // import "./sign-up.styles.scss";
 

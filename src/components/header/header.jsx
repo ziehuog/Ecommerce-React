@@ -5,8 +5,19 @@ import { BsSearch } from 'react-icons/bs';
 import CartIcon from '../cart-icon/cart-icon.component';
 
 import './header.styles.scss';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+
+  const { cartStore } = useSelector((state) => state.cart);
+  console.log(cartStore);
+
+  const counter = cartStore
+    ?.map((item) => item.cartQuantity)
+    .reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+  console.log(counter);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -31,8 +42,12 @@ const Header = () => {
           SIGN IN
         </Link>
       </div>
-
-      <CartIcon />
+      <div className="cart">
+        <CartIcon />
+        <span>
+          <div>{counter}</div>
+        </span>
+      </div>
     </div>
   );
 };

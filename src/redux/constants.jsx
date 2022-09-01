@@ -10,7 +10,6 @@ export const initShopping = {
 };
 
 export const initCart = {
-  counter: 0,
   cartStore: []
 };
 
