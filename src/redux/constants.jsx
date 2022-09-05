@@ -2,11 +2,14 @@ export const initialState = {
   loading: false,
   data: [],
   message: '',
-  currentCategory: ''
+  currentCategory: '',
+  category: ' ',
+  searchKey:'',
 };
 
-export const initShopping = {
-  category: ' '
+export const initFilter = {
+  filteredData: [],
+  arrayCategory: []
 };
 
 export const initCart = {

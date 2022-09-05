@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
-// import { toast } from 'react-toastify';
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './collection-item.styles.scss';
-import { cartAcions } from '../../redux/reducer';
+import { cartActions } from '../../redux/reducer';
 import { useDispatch } from 'react-redux';
 
 const CollectionItem = () => {
+  //dispatch reducer
   const dispatch = useDispatch();
-
   const { data } = useSelector((state) => state.data);
-  const { category } = useSelector((state) => state.shopping);
+  const { filteredData } = useSelector((state) => state.filter);
+  const { searchKey, category } = useSelector((state) => state.shopping);
   const navigate = useNavigate();
 
+  console.log(filteredData)
+  // filter item with categories
   const categoriesItem = data?.filter((item) => {
     if (category === ' ') {
       return item;
@@ -23,16 +25,35 @@ const CollectionItem = () => {
     }
   });
 
+  // filter item with search
+  const searchResult = data.filter((value) => {
+    if (searchKey === '') {
+      return value;
+    } else if (value.name.toLowerCase().includes(searchKey.toLowerCase())) {
+      return value;
+    }
+  });
+
+  //dispatch function add to cart
   const handleAddToCart = (product) => {
-    dispatch(cartAcions.addToCart(product));
-    // toast.success(`Add ${product.name} successfully`, {
-    //   position: toast.POSITION.TOP_CENTER
-    // });
+    dispatch(cartActions.addToCart(product));
   };
+
+  //set data to show after filter
+  const [showData, setShowData] = useState();
+  
+  
+  useEffect(() => {
+    if (searchKey === '') {
+      setShowData(categoriesItem);
+    } else {
+      setShowData(searchResult);
+    }
+  }, [searchKey]);
 
   return (
     <div className="collection">
-      {categoriesItem?.map((item, index) => (
+      {filteredData?.map((item, index) => (
         <div key={index} className="collection-container">
           <div className="collection-item">
             <div className="background-image">

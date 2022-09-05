@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-shop-removebg-preview.png';
-import { BsSearch } from 'react-icons/bs';
 import CartIcon from '../cart-icon/cart-icon.component';
 
-import './header.styles.scss';
 import { useSelector } from 'react-redux';
+import CartDropdown from '../cart-dropdown/cart-dropdown';
+import './header.styles.scss';
 
 const Header = () => {
+  const [showDropDown, setShowDropDown] = useState('none');
 
   const { cartStore } = useSelector((state) => state.cart);
-  console.log(cartStore);
 
   const counter = cartStore
     ?.map((item) => item.cartQuantity)
     .reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     }, 0);
-  console.log(counter);
+
+  const handleShowDropdown = () => {
+    showDropDown === 'none' ? setShowDropDown('block') : setShowDropDown('none');
+  };
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -25,9 +29,6 @@ const Header = () => {
       </Link>
 
       <div className="options">
-        <div>
-          <BsSearch />
-        </div>
         <Link className="option" to="/shop">
           SHOP
         </Link>
@@ -36,18 +37,22 @@ const Header = () => {
           CONTACT
         </Link>
 
-        <div className="option">SIGN OUT</div>
-
         <Link className="option" to="/signin">
           SIGN IN
         </Link>
       </div>
-      <div className="cart">
-        <CartIcon />
-        <span>
-          <div>{counter}</div>
-        </span>
+      <div className="user-container">
+        <div className="cart">
+          <CartIcon />
+          <span>
+            <div>{counter}</div>
+          </span>
+        </div>
+        <div className="user-manager" onClick={() => handleShowDropdown()}>
+          <FaUserCircle />
+        </div>
       </div>
+      <CartDropdown display={showDropDown} />
     </div>
   );
 };

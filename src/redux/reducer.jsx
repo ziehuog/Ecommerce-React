@@ -1,25 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initCart, initShopping } from './constants';
+import { initCart, initShopping,initialState, initFilter } from './constants';
+
+// CHOOSE CATEGORY REDUCER
 export const shoppingReducer = createSlice({
   name: 'shopping',
-  initialState: initShopping,
+  initialState: initialState,
   reducers: {
     chooseCategory(state, action) {
       return {
         ...state,
         category: action.payload
       };
+    },
+
+    addSearchKey(state, action){
+      return {
+        ...state,
+        searchKey: action.payload
+      }
     }
   }
 });
 
 export const actions = shoppingReducer.actions;
-//  default shoppingReducer;
 
+
+// HANDLING CART REDUCER
 export const cartReducer = createSlice({
   name: 'cart',
   initialState: initCart,
   reducers: {
+
+    //add item to cart
     addToCart(state, action) {
       const itemIndex = state.cartStore.findIndex((item) => item.id === action.payload.id);
 
@@ -34,10 +46,13 @@ export const cartReducer = createSlice({
       }
     },
 
+    // remover item from cart
     removeItem(state, action) {
       const newCart = state.cartStore.filter((item) => item.id !== action.payload.id);
       state.cartStore = newCart;
     },
+
+    // decrease quantity of items
     decreaseQuantity(state, action) {
       const itemIndex = state.cartStore.findIndex((item) => item.id === action.payload.id);
 
@@ -50,6 +65,7 @@ export const cartReducer = createSlice({
       localStorage.setItem('cartStore', JSON.stringify(state.cartStore))
     },
 
+    // increase quantity of items
     increaseQuantity(state, action) {
       const itemIndex = state.cartStore.findIndex((item) => item.id === action.payload.id);
 
@@ -61,4 +77,28 @@ export const cartReducer = createSlice({
   }
 });
 
-export const cartAcions = cartReducer.actions;
+export const cartActions = cartReducer.actions;
+
+
+//FILTER REDUCER
+export const filterReducer = createSlice({
+  name: 'filter',
+  initialState: initFilter,
+  reducers: {
+    filterWithPrice(state, action) {
+      return {
+        ...state,
+        filteredData: action.payload
+      };
+    },
+
+    addSearchKey(state, action){
+      return {
+        ...state,
+        searchKey: action.payload
+      }
+    }
+  }
+});
+
+export const filterActions = filterReducer.actions;

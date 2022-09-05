@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import CheckoutItem from '../../components/checkout-item/checkout-item';
-import { cartAcions } from '../../redux/reducer';
+import { cartActions } from '../../redux/reducer';
 
 import './checkout.styles.scss';
 
@@ -18,15 +18,15 @@ const CheckoutPage = () => {
   console.log(sum);
 
   const removeItem = (item) => {
-    dispatch(cartAcions.removeItem(item))
+    dispatch(cartActions.removeItem(item))
   }
 
   const decreaseItem = (item) => {
-    dispatch(cartAcions.decreaseQuantity(item))
+    dispatch(cartActions.decreaseQuantity(item))
   }
 
   const increaseItem = (item) => {
-    dispatch(cartAcions.increaseQuantity(item))
+    dispatch(cartActions.increaseQuantity(item))
   }
 
   return (

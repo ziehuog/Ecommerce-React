@@ -5,7 +5,7 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import './collection-details.styles.scss';
 import CustomButton from '../../shares/custom-button/custom-button';
 import { useDispatch } from 'react-redux';
-import { cartAcions } from '../../redux/reducer';
+import { cartActions } from '../../redux/reducer';
 
 const CollectionDetails = () => {
   const [item, setItem] = useState();
@@ -14,7 +14,7 @@ const CollectionDetails = () => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
-    dispatch(cartAcions.addToCart(product))
+    dispatch(cartActions.addToCart(product))
   }
 
   useEffect(() => {
