@@ -1,0 +1,67 @@
+.header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  .logo-container {
+    height: 60px;
+    width: 80px;
+  }
+  .logo-container img {
+    height: 60px;
+    width: 80px;
+  }
+
+  .options {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+
+    .option {
+      padding: 10px 15px;
+    }
+    .king{
+      text-align : center;
+    }
+  }
+}
+.cart{
+  position: relative;
+}
+.cart span{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  border: 1px solid gray;
+  background-color:lemonchiffon;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+}
+.user-manager{
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.drop-down{
+  display: block;
+}
+
+.user-manager:hover .drop-down{
+  display: block;
+}
