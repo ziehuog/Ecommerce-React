@@ -8,13 +8,14 @@ import { useSelector } from 'react-redux';
 import CartDropdown from '../cart-dropdown/cart-dropdown';
 import './header.styles.scss';
 import { useDispatch } from 'react-redux';
-import { userActions } from '../../redux/reducer';
+import { actions, userActions } from '../../redux/reducer';
 
 const Header = () => {
-  // const [showDropDown, setShowDropDown] = useState('none');
   const { cartStore } = useSelector((state) => state.cart);
   const { showUser, showLogin} = useSelector((state) => state.user)
   const dispatch = useDispatch()
+
+
   //count the quantity of items in the cart
   const counter = cartStore
     ?.map((item) => item.cartQuantity)
@@ -23,10 +24,9 @@ const Header = () => {
     }, 0);
 
 
-  //show dropdown
-  // const handleShowDropdown = () => {
-  //   showDropDown === 'none' ? setShowDropDown('block') : setShowDropDown('none');
-  // };
+    const clickShop = () => {
+      dispatch(actions.chooseCategory(' '))
+    }
 
 
   // display when login 
@@ -43,7 +43,7 @@ const Header = () => {
       </Link>
 
       <div className="options">
-        <Link className="option" to="/shop">
+        <Link className="option" to="/shop" onClick={() => clickShop()}>
           SHOP
         </Link>
 

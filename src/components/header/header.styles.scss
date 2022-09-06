@@ -60,8 +60,10 @@
 
 .drop-down{
   display: block;
+
+  &:hover .drop-down{
+    display: none;
 }
 
-.user-manager:hover .drop-down{
-  display: block;
+// .user-manager:hover 
 }

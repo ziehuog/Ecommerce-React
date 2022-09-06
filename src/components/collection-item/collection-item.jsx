@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './collection-item.styles.scss';
 import { cartActions } from '../../redux/reducer';
-import { useDispatch } from 'react-redux';
+import { dataService } from '../../shares/dataService';
 
 const CollectionItem = () => {
   //dispatch reducer
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.data);
   const { filteredData } = useSelector((state) => state.filter);
   const { searchKey, category } = useSelector((state) => state.shopping);
   const navigate = useNavigate();
+  console.log(category)
+  const data = dataService.data
 
-  console.log(filteredData);
   // filter item with categories
   const categoriesItem = data?.filter((item) => {
     if (category === ' ') {
@@ -24,15 +24,18 @@ const CollectionItem = () => {
       return item.category === category;
     }
   });
+  console.log(categoriesItem);
 
   // filter item with search
-  const searchResult = data.filter((value) => {
-    if (searchKey === '') {
-      return value;
-    } else if (value.name.toLowerCase().includes(searchKey.toLowerCase())) {
-      return value;
-    }
-  });
+  const searchResult = data
+    .filter((value) => {
+      if (searchKey === '') {
+        return value;
+      } else if (value.name.toLowerCase().includes(searchKey.toLowerCase())) {
+        return value;
+      }
+    })
+    .sort();
 
   //dispatch function add to cart
   const handleAddToCart = (product) => {
@@ -43,16 +46,18 @@ const CollectionItem = () => {
   const [showData, setShowData] = useState();
 
   useEffect(() => {
-    if (searchKey === '') {
-      setShowData(categoriesItem);
-    } else {
+    if (searchKey !== '') {
       setShowData(searchResult);
+    } else if (filteredData !== []) {
+      setShowData(filteredData);
+    } else {
+      setShowData(data);
     }
-  }, [searchKey]);
+  }, [searchKey || filteredData]);
 
   return (
     <div className="collection">
-      {showData?.map((item, index) => (
+      {categoriesItem?.map((item, index) => (
         <div key={index} className="collection-container">
           <div className="collection-item" onClick={() => navigate(`/details/${item.id}`)}>
             <div className="background-image">

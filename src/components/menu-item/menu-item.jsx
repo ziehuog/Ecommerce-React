@@ -1,21 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../shares/loading';
 import './menu-item.styles.scss';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../redux/reducer';
+import { dataService } from '../../shares/dataService';
 
 const MenuItem = () => {
-  const { data, loading } = useSelector((state) => state.data);
   const { category } = useSelector((state) => state.shopping);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+const data = dataService.data
 
-
-  if (loading) {
-    return <Loading />;
-  }
   return (
     <>
       {data.length > 0 &&

@@ -1,8 +1,4 @@
 export const initialState = {
-  loading: false,
-  data: [],
-  message: '',
-  currentCategory: '',
   category: ' ',
   searchKey:'',
 };
@@ -18,7 +14,7 @@ export const initCart = {
 
 export const initUser = {
   isLogin: '',
-  showUser: 'none',
-  showLogin: 'block'
+  showUser: '',
+  showLogin: ''
 }
 

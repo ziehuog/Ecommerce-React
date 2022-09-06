@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initCart, initShopping,initialState, initFilter, initUser } from './constants';
+import { initCart, initialState, initFilter, initUser } from './constants';
 
 // CHOOSE CATEGORY REDUCER
 export const shoppingReducer = createSlice({
@@ -83,7 +83,7 @@ export const filterReducer = createSlice({
   name: 'filter',
   initialState: initFilter,
   reducers: {
-    filterWithPrice(state, action) {
+    sortWithPrice(state, action) {
       return {
         ...state,
         filteredData: action.payload
