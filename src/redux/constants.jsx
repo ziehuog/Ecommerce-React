@@ -16,3 +16,9 @@ export const initCart = {
   cartStore: []
 };
 
+export const initUser = {
+  isLogin: '',
+  showUser: 'none',
+  showLogin: 'block'
+}
+

@@ -7,13 +7,16 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import CustomButton from '../../shares/custom-button/custom-button';
 import { collection, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../redux/reducer';
 
 const provider = new GoogleAuthProvider();
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const changeUsername = (e) => {
     return setUsername(e.target.value);
@@ -35,9 +38,9 @@ const SignIn = () => {
         Users.username === username &&
         Users.password === password
       ) {
-        //save id and user name in local storage
-        localStorage.setItem("id", JSON.stringify(doc.id));
+        //save username in local storage
         localStorage.setItem("username", JSON.stringify(doc.data().username));
+        dispatch(userActions.Login(true))
         isMatched = false;
       } else {
         isMatched = true;

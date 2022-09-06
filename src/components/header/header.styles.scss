@@ -57,3 +57,11 @@
   font-size: 27px;
   cursor: pointer;
 }
+
+.drop-down{
+  display: block;
+}
+
+.user-manager:hover .drop-down{
+  display: block;
+}

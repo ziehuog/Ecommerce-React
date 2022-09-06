@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initCart, initShopping,initialState, initFilter } from './constants';
+import { initCart, initShopping,initialState, initFilter, initUser } from './constants';
 
 // CHOOSE CATEGORY REDUCER
 export const shoppingReducer = createSlice({
@@ -62,7 +62,6 @@ export const cartReducer = createSlice({
         const newCart = state.cartStore.filter((item) => item.id !== action.payload.id);
         state.cartStore = newCart;
       }
-      localStorage.setItem('cartStore', JSON.stringify(state.cartStore))
     },
 
     // increase quantity of items
@@ -72,7 +71,6 @@ export const cartReducer = createSlice({
       if (state.cartStore[itemIndex].cartQuantity > 0) {
         state.cartStore[itemIndex].cartQuantity += 1;
       } 
-      localStorage.setItem('cartStore', JSON.stringify(state.cartStore))
     }
   }
 });
@@ -102,3 +100,33 @@ export const filterReducer = createSlice({
 });
 
 export const filterActions = filterReducer.actions;
+
+//LOGIN LOGOUT
+
+export const userReducer = createSlice({
+  name: 'user',
+  initialState: initUser,
+  reducers: {
+    Login(state, action) {
+      return {
+        ...state,
+        isLogin: action.payload,
+        showUser: 'block',
+        showLogin: 'none'
+      };
+    },
+
+    LogOut(state, action){
+      return {
+        ...state,
+        isLogin: action.payload,
+        showUser: 'none',
+        showLogin: 'block'
+
+      }
+    },
+    
+  }
+});
+
+export const userActions = userReducer.actions;

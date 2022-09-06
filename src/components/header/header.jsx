@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-shop-removebg-preview.png';
@@ -7,21 +7,35 @@ import CartIcon from '../cart-icon/cart-icon.component';
 import { useSelector } from 'react-redux';
 import CartDropdown from '../cart-dropdown/cart-dropdown';
 import './header.styles.scss';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../redux/reducer';
 
 const Header = () => {
-  const [showDropDown, setShowDropDown] = useState('none');
-
+  // const [showDropDown, setShowDropDown] = useState('none');
   const { cartStore } = useSelector((state) => state.cart);
-
+  const { showUser, showLogin} = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  //count the quantity of items in the cart
   const counter = cartStore
     ?.map((item) => item.cartQuantity)
     .reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     }, 0);
 
-  const handleShowDropdown = () => {
-    showDropDown === 'none' ? setShowDropDown('block') : setShowDropDown('none');
-  };
+
+  //show dropdown
+  // const handleShowDropdown = () => {
+  //   showDropDown === 'none' ? setShowDropDown('block') : setShowDropDown('none');
+  // };
+
+
+  // display when login 
+  useEffect(() => {
+    if(localStorage.getItem('username') !== ''){
+      dispatch(userActions.Login(true))
+  
+    }
+  }, [])
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -37,8 +51,8 @@ const Header = () => {
           CONTACT
         </Link>
 
-        <Link className="option" to="/signin">
-          SIGN IN
+        <Link className="option" to="/signin" style={{ display: `${showLogin}` }}>
+          Sign in/Sign up
         </Link>
       </div>
       <div className="user-container">
@@ -48,11 +62,16 @@ const Header = () => {
             <div>{counter}</div>
           </span>
         </div>
-        <div className="user-manager" onClick={() => handleShowDropdown()}>
+
+        <div
+          className="user-manager"
+          style={{ display: `${showUser}` }}>
           <FaUserCircle />
         </div>
       </div>
-      <CartDropdown display={showDropDown} />
+      <div className="drop-down">
+      <CartDropdown  />
+      </div>
     </div>
   );
 };

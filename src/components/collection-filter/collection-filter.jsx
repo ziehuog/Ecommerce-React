@@ -53,7 +53,7 @@ function CollectionFilter() {
         <h3 htmlFor="">Categories</h3>
         {arrCategories?.map((data) => (
           <div key={data.id}>
-            <input type="checkbox" name={data.category} id="" />
+            <input type="checkbox" name={data.category} id={data.category} />
             <label htmlFor={data.category}>{data.category}</label>
           </div>
         ))}

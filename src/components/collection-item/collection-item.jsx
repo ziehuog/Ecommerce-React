@@ -15,7 +15,7 @@ const CollectionItem = () => {
   const { searchKey, category } = useSelector((state) => state.shopping);
   const navigate = useNavigate();
 
-  console.log(filteredData)
+  console.log(filteredData);
   // filter item with categories
   const categoriesItem = data?.filter((item) => {
     if (category === ' ') {
@@ -41,8 +41,7 @@ const CollectionItem = () => {
 
   //set data to show after filter
   const [showData, setShowData] = useState();
-  
-  
+
   useEffect(() => {
     if (searchKey === '') {
       setShowData(categoriesItem);
@@ -53,13 +52,13 @@ const CollectionItem = () => {
 
   return (
     <div className="collection">
-      {filteredData?.map((item, index) => (
+      {showData?.map((item, index) => (
         <div key={index} className="collection-container">
-          <div className="collection-item">
+          <div className="collection-item" onClick={() => navigate(`/details/${item.id}`)}>
             <div className="background-image">
               <img src={`${item.image}`} alt="" />
             </div>
-            <div className="item-content" onClick={() => navigate(`/details/${item.id}`)}>
+            <div className="item-content">
               <h3 className="collection-title">Details</h3>
             </div>
           </div>
