@@ -5,7 +5,8 @@ export const initialState = {
 
 export const initFilter = {
   sortCondition: function(){},
-  arrayCategory: []
+  arrayCategory: [],
+  categoriesSelected: []
 };
 
 export const initCart = {

@@ -12,9 +12,8 @@ import { actions, userActions } from '../../redux/reducer';
 
 const Header = () => {
   const { cartStore } = useSelector((state) => state.cart);
-  const { showUser, showLogin} = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-
+  const { showUser, showLogin } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   //count the quantity of items in the cart
   const counter = cartStore
@@ -23,19 +22,16 @@ const Header = () => {
       return accumulator + currentValue;
     }, 0);
 
+  const clickShop = () => {
+    dispatch(actions.chooseCategory(' '));
+  };
 
-    const clickShop = () => {
-      dispatch(actions.chooseCategory(' '))
-    }
-
-
-  // display when login 
+  // display when login
   useEffect(() => {
-    if(localStorage.getItem('username') !== ''){
-      dispatch(userActions.Login(true))
-  
+    if (localStorage.getItem('username') !== '') {
+      dispatch(userActions.Login(true));
     }
-  }, [])
+  }, []);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -43,6 +39,10 @@ const Header = () => {
       </Link>
 
       <div className="options">
+        <Link className="option" to="/">
+          HOME
+        </Link>
+
         <Link className="option" to="/shop" onClick={() => clickShop()}>
           SHOP
         </Link>
@@ -63,14 +63,12 @@ const Header = () => {
           </span>
         </div>
 
-        <div
-          className="user-manager"
-          style={{ display: `${showUser}` }}>
+        <div className="user-manager" style={{ display: `${showUser}` }}>
           <FaUserCircle />
         </div>
       </div>
       <div className="drop-down">
-      <CartDropdown  />
+        <CartDropdown />
       </div>
     </div>
   );

@@ -90,11 +90,16 @@ export const filterReducer = createSlice({
       };
     },
 
-    addSearchKey(state, action){
+    selectCategory(state, action){
       return {
         ...state,
-        searchKey: action.payload
+        categoriesSelected: action.payload
+        
       }
+    },
+
+    checkAll(state, action){
+
     }
   }
 });

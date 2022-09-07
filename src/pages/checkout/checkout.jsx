@@ -8,7 +8,7 @@ import './checkout.styles.scss';
 
 const CheckoutPage = () => {
   const { cartStore } = useSelector((state) => state.cart);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const sum = cartStore
     ?.map((item) => item.price * item.cartQuantity)
@@ -18,59 +18,61 @@ const CheckoutPage = () => {
   console.log(sum);
 
   const removeItem = (item) => {
-    dispatch(cartActions.removeItem(item))
-  }
+    dispatch(cartActions.removeItem(item));
+  };
 
   const decreaseItem = (item) => {
-    dispatch(cartActions.decreaseQuantity(item))
-  }
+    dispatch(cartActions.decreaseQuantity(item));
+  };
 
   const increaseItem = (item) => {
-    dispatch(cartActions.increaseQuantity(item))
-  }
+    dispatch(cartActions.increaseQuantity(item));
+  };
 
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
-          <span>Product</span>
-        </div>
+    <>
+      <table className="checkout-page">
+        <tr className="checkout-header">
+          <th className="header-block">
+            <span>Product</span>
+          </th>
 
-        <div className="header-block">
-          <span>Description</span>
-        </div>
+          <th className="header-block">
+            <span>Description</span>
+          </th>
 
-        <div className="header-block">
-          <span>Quantity</span>
-        </div>
+          <th className="header-block">
+            <span>Quantity</span>
+          </th>
 
-        <div className="header-block">
-          <span>Price</span>
-        </div>
+          <th className="header-block">
+            <span>Price</span>
+          </th>
 
-        <div className="header-block">
-          <span>Remove</span>
-        </div>
-      </div>
+          <th className="header-block">
+            <span>Remove</span>
+          </th>
+        </tr>
 
-      <div>
-        {cartStore?.map((item) => (
-          <CheckoutItem
-            key={item.id}
-            image={item.image}
-            name={item.name}
-            quantity={item.cartQuantity}
-            price={item.price}
-            onClick={() => removeItem(item)}
-            decrease={() => decreaseItem(item)}
-            increase={() => increaseItem(item)}
-          />
-        ))}
-      </div>
+        <tbody>
+          {cartStore?.map((item) => (
+            <CheckoutItem
+              key={item.id}
+              image={item.image}
+              name={item.name}
+              quantity={item.cartQuantity}
+              price={item.price}
+              onClick={() => removeItem(item)}
+              decrease={() => decreaseItem(item)}
+              increase={() => increaseItem(item)}
+            />
+          ))}
+        </tbody>
+      </table>
       <div className="total">
         <span>TOTAL: ${sum}</span>
       </div>
-    </div>
+    </>
   );
 };
 
