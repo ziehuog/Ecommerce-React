@@ -4,7 +4,7 @@ export const initialState = {
 };
 
 export const initFilter = {
-  filteredData: [],
+  sortCondition: function(){},
   arrayCategory: []
 };
 

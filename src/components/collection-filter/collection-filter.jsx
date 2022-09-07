@@ -15,15 +15,15 @@ function CollectionFilter() {
   );
 
   const sortAscending = () => {
-    const fakeData = [...data];
-    const newData = fakeData?.sort((item1, item2) => item1.price - item2.price);
-    dispatch(filterActions.sortWithPrice(newData));
+    // const fakeData = [...data];
+    // const newData = fakeData?.sort(function(item1, item2) {return item1.price - item2.price} );
+    dispatch(filterActions.sortWithPrice(function(item1, item2) {return item1.price - item2.price}));
   };
 
   const sortDescending = () => {
-    const fakeData = [...data];
-    const newData = fakeData?.sort((item1, item2) => item2.price - item1.price);
-    dispatch(filterActions.sortWithPrice(newData));
+    // const fakeData = [...data];
+    // const newData = fakeData?.sort((item1, item2) => item2.price - item1.price);
+    dispatch(filterActions.sortWithPrice(function(item1, item2) {return item1.price - item2.price}));
   };
 
   const typingInput = (e) => {

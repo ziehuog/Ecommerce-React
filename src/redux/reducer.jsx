@@ -86,7 +86,7 @@ export const filterReducer = createSlice({
     sortWithPrice(state, action) {
       return {
         ...state,
-        filteredData: action.payload
+        sortCondition: action.payload
       };
     },
 

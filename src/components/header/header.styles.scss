@@ -56,14 +56,16 @@
 .user-manager{
   font-size: 27px;
   cursor: pointer;
-}
 
+  &:hover {
+    visibility: visible;
+  }
+  
+}
 .drop-down{
-  display: block;
+  visibility: hidden;
 
-  &:hover .drop-down{
-    display: none;
+  
 }
 
-// .user-manager:hover 
-}
+

@@ -10,10 +10,10 @@ import { dataService } from '../../shares/dataService';
 const CollectionItem = () => {
   //dispatch reducer
   const dispatch = useDispatch();
-  const { filteredData } = useSelector((state) => state.filter);
+  const { sortCondition } = useSelector((state) => state.filter);
   const { searchKey, category } = useSelector((state) => state.shopping);
   const navigate = useNavigate();
-  console.log(category)
+  console.log(sortCondition)
   const data = dataService.data
 
   // filter item with categories
@@ -24,7 +24,6 @@ const CollectionItem = () => {
       return item.category === category;
     }
   });
-  console.log(categoriesItem);
 
   // filter item with search
   const searchResult = data
@@ -35,7 +34,7 @@ const CollectionItem = () => {
         return value;
       }
     })
-    .sort();
+    .sort(sortCondition);
 
   //dispatch function add to cart
   const handleAddToCart = (product) => {
@@ -45,19 +44,19 @@ const CollectionItem = () => {
   //set data to show after filter
   const [showData, setShowData] = useState();
 
-  useEffect(() => {
-    if (searchKey !== '') {
-      setShowData(searchResult);
-    } else if (filteredData !== []) {
-      setShowData(filteredData);
-    } else {
-      setShowData(data);
-    }
-  }, [searchKey || filteredData]);
+  // useEffect(() => {
+  //   if (searchKey !== '') {
+  //     setShowData(searchResult);
+  //   } else if (filteredData !== []) {
+  //     setShowData(filteredData);
+  //   } else {
+  //     setShowData(data);
+  //   }
+  // }, [searchKey || filteredData]);
 
   return (
     <div className="collection">
-      {categoriesItem?.map((item, index) => (
+      {searchResult?.map((item, index) => (
         <div key={index} className="collection-container">
           <div className="collection-item" onClick={() => navigate(`/details/${item.id}`)}>
             <div className="background-image">
